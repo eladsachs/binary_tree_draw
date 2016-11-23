@@ -1,12 +1,9 @@
-
 import java.util.StringTokenizer;
 import java.util.Stack;
 import java.lang.Object;
 import java.lang.String;
 
 //import basics.SearchTree.Node;
-
-
 
 public class listCompound {
 	public String str_paranthesis;
@@ -44,7 +41,7 @@ public Tree listCompound_2_Tree()
 		 int i, j;
 		 int i_debug;
 		 i_debug=0;
-		 if(i_debug==0)	 System.out.println("do_Dump: listCompound_2_Tree");
+		// if(i_debug==0)	 System.out.println("do_Dump: listCompound_2_Tree");
 		 int indexChar; // type of a char
 		 Node myNode;       // 8.12.07
 		 myNode=new Node(); // 8.12.07
@@ -148,7 +145,7 @@ public Tree listCompound_2_Tree()
         localTree=new Tree(myNode);
         int i_debug;
         i_debug=Debug.i_debug;
-        if(i_debug>=0) System.out.println("do_dump: listPure_2_Tree");
+        //if(i_debug>=0) System.out.println("do_dump: listPure_2_Tree");
         // ----------------------------
 		 //StringTokenizer st;
 		 //st = new StringTokenizer(myString);
@@ -288,7 +285,7 @@ public Tree listCompound_2_Tree()
 		 String currentToken;
 	     int i_debug;
 	     i_debug=Debug.i_debug;
-	     if(i_debug>=0) System.out.println("do_dump: listCompound_2_Stack");
+	     //if(i_debug>=0) System.out.println("do_dump: listCompound_2_Stack");
 	     // ----------------------------		 
 		 myString=this.str_paranthesis;
 	 	 
@@ -417,36 +414,4 @@ public Tree listCompound_2_Tree()
 		 return localListCompound;
 	} // String spaced()
 //	==========================================
-	public SearchTree listPure_2_SearchTree()
-	  {
-        // ------------------------------
-		//  listPure: (a bc d 5 f)
-		//
-		//
-		// -----------------------------
-		SearchTree localSearchTree;
-		//SearchTree.Node myNode;       // default Node
-		localSearchTree=new SearchTree();
-		//myNode=   localSearchTree.new  Node(); // default Node;
-		SearchTree.Node node1;
-
-		 Object currentObject;
-
-        // ----------------------------
-		 int n_stack; // number of elements in a stack.
-
-		 n_stack=stackList.size();
-		 //
-		 for(int i=0;i<n_stack;i++)
-	     {	 
-			 currentObject=stackList.elementAt(i);
-    	     //objectClassName=currentObject.getClass().getName();
-	         //
-	    	 node1=localSearchTree.new Node((String)currentObject);
-	    	 localSearchTree.insert(node1);
-	     } // for
-		 //===========================
-        return localSearchTree;
-	  } // Tree listPure_2_SearchTree()
-	// ===========================================	
 } // class listCompound

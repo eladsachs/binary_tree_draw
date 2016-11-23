@@ -1,12 +1,10 @@
-
-
-
-
 public class Node {
 	public String a_value;    // The value of the Node
 	public int semanticsType; // Semantics Categories
 	public int syntaxType;    //Syntax: subject, object, verb
 	public int speachType;    //noun, verb, preposition,
+        public int xpos;
+        public int ypos;
 	//===================================================
 	public Node T_Father;     // T - denotes the Parsing-tree
 	public Node T_Brother;    // The tree is impelemented by a binary tree.
@@ -24,14 +22,14 @@ public class Node {
 	//      Cohyponym - a word which is one of multiple hyponyms of another word 
 	//
 	public Node (){
-	    a_value="abc";
+	    a_value="a";
 		semanticsType=0;
 		syntaxType=0;
 		speachType=0;
 		T_Father=null;
 		T_Brother=null;
 		T_Son=null;
-	}; // Node ()
+	}; // Node ()// Node ()
 	// ==========================
 	public Node (String myString){
 	    a_value=myString;
@@ -42,6 +40,12 @@ public class Node {
 		T_Brother=null;
 		T_Son=null;
 	}; // Node (String myString)
+        
+      public Node(String x, Node l, Node r) {
+      T_Son = l;
+      T_Brother = r;
+      a_value = x;
+      }
 	// ==========================
 	static public int Node_2_Node (Node node0, Node node1){
 		//
@@ -93,29 +97,9 @@ public class Node {
 		
 		return localString;
 	}; // public String Node_2_String ()
+//	 ==========================// public String Node_2_String ()
 //	 ==========================
-	 public int Node_2_File (){
-		//
-		// Input:
-		// ======
-		// this -
-		//
-		// Output
-		// ============
-		// status - writing status;
-		//
-		int status;
-		String localString;
-		int i_debug;
-	    i_debug=Debug.i_debug;
-	    if(i_debug==0) System.out.println("do-Dump: Node_2_File");
-	    
-		localString=this.Node_2_String();
-		
-        status=myFile.myWriteFile(localString);
-        	
-		return status;
-	}; // public String Node_2_File ()	
+
 	// ==========================
 	public Node (String value1, int semanticsType1, int syntaxType1, int speachType1, 
 			Node Father1, Node Brother1, Node Son1){
@@ -174,7 +158,7 @@ public class Node {
 	    int n_if;
 	    int i_debug;
 	    i_debug=Debug.i_debug;
-	    if(i_debug==0) System.out.println("do-Dump: Node_2_Preorder ");
+	    //if(i_debug==0) System.out.println("do-Dump: Node_2_Preorder ");
 	    //
 	    n_if=0;
 	    n_if=n_if-1;
@@ -462,40 +446,16 @@ static public Node Console_2_Node(String prompt){
 	int i_debug;
 	i_debug=1;
     i_debug=Debug.i_debug;
-    if(i_debug==0) System.out.println("do-Dump: Console_2_Node");
+    //if(i_debug==0) System.out.println("do-Dump: Console_2_Node");
     
 	System.out.println("Enter the Node value:");
-	a_value= myConsole.readString(prompt);
+	//a_value= myConsole.readString(prompt);
      
-    localNode.a_value=a_value;          
+//    localNode.a_value=a_value;          
 	return localNode;
     } // static public Node Console_2_Node(String prompt)
 //===============================================
-static public Node File_2_Node(){
-	// 
-    //   Reading a Node from a File
-	//
-	Node localNode;
-	//localNode = new Node(); 
-	String localString;
-	int status;
-	
-	int i_debug;
-	i_debug=1;
-    i_debug=Debug.i_debug;
-    if(i_debug==0) System.out.println("do-Dump: File_2_Node");
-    status=-1;
-    status=status+1;
-    localString="";
-    status=myFile.myOpenInFile();
-    localString=myFile.myReadFile();
-    status=myFile.myCloseInFile();
-	listCompound myListCompound;
-	myListCompound=new listCompound(localString);
-	localNode = new Node(myListCompound);
-          
-	return localNode;
-    } // static public Node File_2_Node()
+
 //================================================
 public int Node_insert_Node(Node myNode){
 	  //

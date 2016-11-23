@@ -1,4 +1,11 @@
 
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+
+
 public class Screen {
 	//
 	// For plotting the tree etc.
@@ -63,7 +70,7 @@ public class Screen {
 		   }
 	} // Screen()
 	// ======================================================
-	public int Screen2Print(String title)
+        public int Screen2Print()
 	{
 		int warningNumber;
 		int i,j;
@@ -71,7 +78,7 @@ public class Screen {
 		
 		warningNumber=0;
 		// Title
-		   System.out.println("Image: " + title + ": ");
+		   //System.out.println("Image: " + title + ": ");
 		//
 		   for (i=0;i<n_rows;i++)
 		   {
@@ -81,6 +88,49 @@ public class Screen {
 				   lineString=lineString+Image[i][j]; 
 			   }
 			   System.out.println(lineString);			   
+		   }		
+		return warningNumber;
+	} // Screen2Printer()
+        
+	public int Screen2Area(JTextArea Area)
+	{
+		int warningNumber;
+		int i,j;
+		String lineString;
+		
+		warningNumber=0;
+		// Title
+		   //System.out.println("Image: " + title + ": ");
+		//
+		   for (i=0;i<n_rows;i++)
+		   {
+			   lineString="";
+			   for (j=0;j<n_cols;j++)
+			   {
+				   lineString=lineString+Image[i][j]; 
+			   }
+			   Area.append(lineString + "\n");			   
+		   }		
+		return warningNumber;
+	} // Screen2Printer()
+        public int Screen2Pane (JTextPane Pane, SimpleAttributeSet a) throws BadLocationException
+	{
+		int warningNumber;
+		int i,j;
+		String lineString;
+		
+		warningNumber=0;
+		// Title
+		   //System.out.println("Image: " + title + ": ");
+		//
+		   for (i=0;i<n_rows;i++)
+		   {
+			   lineString="";
+			   for (j=0;j<n_cols;j++)
+			   {
+				   lineString=lineString+Image[i][j]; 
+			   }
+			   Pane.getDocument().insertString(Pane.getDocument().getLength(), (lineString + "\n"), a);
 		   }		
 		return warningNumber;
 	} // Screen2Printer()

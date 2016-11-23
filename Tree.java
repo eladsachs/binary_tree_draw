@@ -1,8 +1,9 @@
-
-
 public class Tree {
   public Node root;
+  public String inputString= new String();
   public int typeTree;
+  public int totalnodes = 0; //keeps track of the inorder number for horiz. scaling 
+  public int maxheight=0;//keeps track of the depth of the tree for vert. scaling
   // ================================================
   public String Tree_2_Preorder(Tree myTree){
 	  String resultString;
@@ -70,7 +71,7 @@ public class Tree {
 			  resultNumber = myTree.root.NodesNumber();
 		  }
 		  return resultNumber;
-	 }; // Tree_Nodes_Number(Tree myTree)
+	 }; // Tree_Nodes_Number(Tree myTree)// Tree_Nodes_Number(Tree myTree)
   // ================================================
   public Tree(){ 
 	  //root=new Node();
@@ -80,6 +81,42 @@ public class Tree {
   public Tree(Node rootNode){ 
 	  root=rootNode;
   } // Tree(Node rootNode)
+  
+  public int treeHeight(Node t){
+	if(t==null) return -1;
+          else return 1 + max(treeHeight(t.T_Son),treeHeight(t.T_Brother));
+    }
+      public int max(int a, int b){
+	  if(a>b) return a; else return b;
+    }
+    public void computeNodePositions() {
+      int depth = 1;
+      inorder_traversal(root, depth);
+    }
+    public void inorder_traversal(Node t, int depth) { 
+      if (t != null) {
+        inorder_traversal(t.T_Son, depth + 1); //add 1 to depth (y coordinate) 
+        t.xpos = totalnodes++; //x coord is node number in inorder traversal
+        t.ypos = depth; // mark y coord as depth
+        inorder_traversal(t.T_Brother, depth + 1);
+      }
+    }
+        public Node insert(Node root, String s) { // Binary Search tree insert
+      if (root == null) {
+        root = new Node(s, null, null);
+        return root;
+      }
+      else {
+        if (s.compareTo((String)(root.a_value)) == 0) {
+           return root;  //duplicate word  found - do nothing 
+        } else   if (s.compareTo((String)(root.a_value)) < 0)
+                     root.T_Son = insert(root.T_Son, s);
+                 else
+                     root.T_Brother = insert(root.T_Brother, s);
+        return root;
+      }
+    }
+
   // =============================================
 //	 ================================================
   public int Tree_insert_Node(Node myNode){
